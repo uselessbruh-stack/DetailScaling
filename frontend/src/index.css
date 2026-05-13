@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #0a0a0a;
+    color: #e5e5e5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111111;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444444;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(217, 119, 6, 0.3);
+    color: #fbbf24;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-surface-800 border border-surface-500 rounded-lg;
+  }
+
+  .panel-header {
+    @apply px-4 py-3 border-b border-surface-500 flex items-center justify-between;
+  }
+
+  .panel-body {
+    @apply p-4;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-accent-600 hover:bg-accent-700 text-white rounded-md
+           font-medium text-sm transition-colors duration-150 
+           active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-surface-600 hover:bg-surface-500 text-neutral-300
+           border border-surface-400 rounded-md font-medium text-sm 
+           transition-colors duration-150 active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply px-3 py-1.5 text-neutral-400 hover:text-neutral-200 
+           hover:bg-surface-600 rounded-md text-sm transition-colors duration-150;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 bg-surface-700 border border-surface-500 
+           rounded-md text-neutral-200 text-sm placeholder-neutral-500
+           focus:outline-none focus:border-accent-600 transition-colors;
+  }
+
+  .label {
+    @apply text-xs font-medium text-neutral-400 uppercase tracking-wider;
+  }
+
+  .stat-value {
+    @apply text-2xl font-semibold text-neutral-100 font-mono tabular-nums;
+  }
+
+  .stat-label {
+    @apply text-xs text-neutral-500 mt-1;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
+           bg-surface-600 text-neutral-300 border border-surface-400;
+  }
+
+  .canvas-container {
+    @apply relative bg-surface-900 border border-surface-500 rounded-lg overflow-hidden;
+  }
+
+  .tooltip-panel {
+    @apply absolute z-50 bg-surface-700 border border-surface-400 rounded-lg 
+           shadow-xl p-3 text-sm pointer-events-none;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-400 to-accent-600;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(217, 119, 6, 0.15);
+  }
+
+  .grid-fade {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
+
+/* Canvas animation helpers */
+canvas {
+  image-rendering: pixelated;
+}
+
+/* Range slider custom styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #333333;
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #d97706;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #f59e0b;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #d97706;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* Recharts dark theme overrides */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #222222;
+}
+
+.recharts-text {
+  fill: #777777;
+  font-size: 11px;
+}
+
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: #1a1a1a !important;
+  border: 1px solid #333333 !important;
+  border-radius: 6px !important;
+}
